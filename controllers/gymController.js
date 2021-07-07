@@ -1,5 +1,5 @@
 // Database
-const { Gym } = require("../db/models");
+const { Gym, User } = require("../db/models");
 
 exports.gymFetch = async (gymId, next) => {
   try {
@@ -12,12 +12,17 @@ exports.gymFetch = async (gymId, next) => {
 
 exports.gymCreate = async (req, res, next) => {
   try {
-    if (req.file) {
-      req.body.image = `http://${req.get("host")}/${req.file.path}`;
-    }
+    const isAdmin = await User.findAll({
+      where: { isAdmin: true },
+    });
+    if (isAdmin) {
+      if (req.file) {
+        req.body.image = `http://${req.get("host")}/${req.file.path}`;
+      }
 
-    const newGym = await Gym.create(req.body);
-    res.status(201).json(newGym);
+      const newGym = await Gym.create(req.body);
+      res.status(201).json(newGym);
+    }
   } catch (error) {
     next(error);
   }
@@ -57,3 +62,18 @@ exports.gymDetail = async (req, res) => res.json(req.gym);
 //     next(error);
 //   }
 // };
+exports.createOwner = async (req, res, next) => {
+  try {
+    const isAdmin = await User.findAll({
+      where: { isAdmin: true },
+    });
+    if (isAdmin) {
+      const newGym = await User.create(req.body);
+      // req.body.type === "owner";
+      // await User.type.update("owner")
+      res.status(201).json(newGym);
+    }
+  } catch (error) {
+    next(error);
+  }
+};

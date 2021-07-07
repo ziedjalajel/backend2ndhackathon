@@ -14,11 +14,11 @@ exports.gymClassesList = async (req, res, next) => {
   try {
     const gymClasses = await GymClass.findAll({
       attributes: { exclude: ["createdAt", "updatedAt"] },
-      // include: {
-      //   model: ClassType,
-      //   as: "gymClassTypes",
-      //   attributes: ["id"],
-      // },
+      include: {
+        model: ClassType,
+        // as: "gymClassTypes",
+        attributes: ["name", "slug"],
+      },
     });
     res.json(gymClasses);
   } catch (error) {

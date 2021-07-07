@@ -12,6 +12,9 @@ module.exports = (sequelize, DataTypes) => {
     image: {
       type: DataTypes.STRING,
     },
+    ownername: {
+      type: DataTypes.STRING,
+    },
   });
   SequelizeSlugify.slugifyModel(Gym, {
     source: ["name"],

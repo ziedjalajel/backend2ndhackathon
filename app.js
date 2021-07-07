@@ -9,6 +9,8 @@ const gymsRoutes = require("./routes/gymsRoutes");
 const gymClassRoutes = require("./routes/gymClassRoutes");
 const classTypesRoutes = require("./routes/classTypesRoutes");
 
+const path = require("path");
+
 const app = express();
 //middleware
 app.use(cors());
@@ -23,6 +25,8 @@ app.use(usersRoutes);
 app.use("/gyms", gymsRoutes);
 app.use("/classes", gymClassRoutes);
 app.use("/classestypes", classTypesRoutes);
+
+app.use("/media", express.static(path.join(__dirname, "media")));
 
 app.use((req, res, next) => {
   const err = new Error("Path Not Found");
