@@ -1,0 +1,12 @@
+{
+  "name": "backend2ndhackathon",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/ziedjalajel/backend2ndhackathon.git",
+  "author": "ziedjalajel <zied.jalajel1993@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  }
+}
