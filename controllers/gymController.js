@@ -15,6 +15,7 @@ exports.gymCreate = async (req, res, next) => {
     const isAdmin = await User.findAll({
       where: { isAdmin: true },
     });
+
     if (isAdmin) {
       if (req.file) {
         req.body.image = `http://${req.get("host")}/${req.file.path}`;
@@ -64,15 +65,21 @@ exports.gymDetail = async (req, res) => res.json(req.gym);
 // };
 exports.createOwner = async (req, res, next) => {
   try {
-    const isAdmin = await User.findAll({
-      where: { isAdmin: true },
-    });
-    if (isAdmin) {
-      const newGym = await User.create(req.body);
+    // const isAdmin = await User.findAll({
+    //   where: { isAdmin: true },
+    // });
+    // if (isAdmin) {
+    // const isOwner = await User.findAll({
+    // where: { userId: "1" },
+    // });
+    // console.log(isOwner);
+    if (req.params.userId == 1) {
+      const newGym = await User.findByPk(req.params.userId);
       // req.body.type === "owner";
       // await User.type.update("owner")
       res.status(201).json(newGym);
     }
+    // }
   } catch (error) {
     next(error);
   }

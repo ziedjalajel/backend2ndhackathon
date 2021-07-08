@@ -28,7 +28,6 @@ module.exports = {
       },
       type: {
         type: Sequelize.STRING,
-        defaultValue: "member",
       },
       firstname: {
         type: Sequelize.STRING,

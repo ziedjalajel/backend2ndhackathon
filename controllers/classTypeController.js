@@ -53,6 +53,7 @@ exports.classTypeCreate = async (req, res, next) => {
 exports.gymClassCreate = async (req, res, next) => {
   try {
     req.body.classTypeId = req.classType.id;
+
     const newGymClass = await GymClass.create(req.body);
     res.status(201).json(newGymClass);
   } catch (error) {

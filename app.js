@@ -8,7 +8,7 @@ const usersRoutes = require("./routes/usersRoutes");
 const gymsRoutes = require("./routes/gymsRoutes");
 const gymClassRoutes = require("./routes/gymClassRoutes");
 const classTypesRoutes = require("./routes/classTypesRoutes");
-
+const sessionsRoutes = require("./routes/sessionsRout");
 const path = require("path");
 
 const app = express();
@@ -21,10 +21,13 @@ app.use(passport.initialize());
 passport.use(localStrategy);
 passport.use(jwtStrategy);
 
-app.use(usersRoutes);
+// app.use(usersRoutes);
+app.use("/users", usersRoutes);
+
 app.use("/gyms", gymsRoutes);
 app.use("/classes", gymClassRoutes);
 app.use("/classestypes", classTypesRoutes);
+app.use("/sessions", sessionsRoutes);
 
 app.use("/media", express.static(path.join(__dirname, "media")));
 

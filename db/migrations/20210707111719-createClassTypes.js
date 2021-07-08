@@ -9,7 +9,7 @@ module.exports = {
         primaryKey: true,
       },
       name: Sequelize.STRING,
-      slug: Sequelize.STRING,
+      slug: { type: Sequelize.STRING, unique: true },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

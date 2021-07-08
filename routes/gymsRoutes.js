@@ -7,6 +7,7 @@ const {
   gymCreate,
   gymList,
   gymDetail,
+  createOwner,
   //   gymUpdate,
   //   gymDelete,
 } = require("../controllers/gymController");
@@ -28,6 +29,8 @@ router.post("/", upload.single("image"), gymCreate);
 router.get("/", gymList);
 
 router.get("/:gymId", gymDetail);
+
+router.get("/aa/:userId", createOwner);
 
 // router.put("/:gymId", upload.single("image"), gymUpdate);
 
