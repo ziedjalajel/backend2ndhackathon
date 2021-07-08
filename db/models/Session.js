@@ -23,6 +23,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
     },
   });
+  SequelizeSlugify.slugifyModel(Session, {
+    source: ["name"],
+  });
+
   Session.associate = (models) => {
     models.User.hasMany(Session, {
       foreignKey: "userId",
